@@ -1,0 +1,1 @@
+export { BbvaListMovieCard } from './src/BbvaListMovieCard.js';
