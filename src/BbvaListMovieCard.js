@@ -43,7 +43,15 @@ export class BbvaListMovieCard extends LitElement {
       getComponentSharedStyles('bbva-list-movie-card-shared-styles')
     ];
   }
-
+  _getMovieIdEvent(item){
+    this.dispatchEvent(
+      new CustomEvent('get-id-movie-event', {
+        bubbles: true,
+        composed: true,
+        detail: item
+      })
+    );
+  }
   // Define a template
   render() {
     return html`
@@ -51,7 +59,7 @@ export class BbvaListMovieCard extends LitElement {
         ${this.movieList.results.map(
           (card) => html`
           <div class="col mt-3">
-            <div class="col-md-11"><bbva-movie-card-bs .movie=${card} .isextended=${false}></bbva-movie-card-bs></div>
+            <div class="col-md-11"><bbva-movie-card-bs .movie=${card} .isextended=${false} @id-movie-event=${(e) =>this._getMovieIdEvent(e.detail)}></bbva-movie-card-bs></div>
           </div>
             `
             )}
